@@ -2,7 +2,7 @@
 #define MATRIX_H
 #include <array>
 #include <string>
-#include "Quaternion.h"
+#include "../../Quaternion.h"
 #include <vector>
 #include <functional>
 namespace Matrix
