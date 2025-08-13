@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <iostream>
 
-#include "../Matrix.h"
+#include "../include/MatTesLib/Matrix.h"
 #include "../src/Matrix.cpp"
 
 int main()
