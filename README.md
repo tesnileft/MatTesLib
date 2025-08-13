@@ -12,7 +12,7 @@ Just a small maths library that takes care of some 3d computer graphics related 
  - [x] Basic operators (+ - *)
  - [x] Maths operations (Dot() Cross())
   -[ ] Write testing code
-- [] Matrices
+- [ ] Matrices
  - [x] Headers
  - [ ] Basic operators (+ - *)
  - [ ] Maths operations (Transpose() Inverse() etc.)
