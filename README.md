@@ -11,7 +11,7 @@ Just a small maths library that takes care of some 3d computer graphics related 
  - [x] Headers
  - [x] Basic operators (+ - *)
  - [x] Maths operations (Dot() Cross())
-  -[ ] Write testing code
+  - [ ] Write testing code
 - [ ] Matrices
  - [x] Headers
  - [ ] Basic operators (+ - *)
