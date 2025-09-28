@@ -1,14 +1,22 @@
 cmake_minimum_required(VERSION 3.31)
-project(VecTesLib)
+project(MatTesLib)
 set(CMAKE_CXX_STANDARD 20)
 enable_testing()
 
-add_library(VecTesLib STATIC
-        Matrix.cpp
-        Matrix.h
+add_library(MatTesLib STATIC
+        src/Matrix.cpp
+        src/Quaternion.cpp
+        include/MatTesLib/Vector.h
+        src/Vector.cpp
 )
 
-add_executable(TestApp Testing.cpp
-        Quaternion.cpp
-        Quaternion.h)
+target_include_directories(MatTesLib
+        PUBLIC
+        $<BUILD_INTERFACE: ${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
+
+
+add_executable(TestApp testing/Testing.cpp)
+target_link_libraries(TestApp PRIVATE MatTesLib)
 add_test(NAME BASIC_TEST COMMAND TestApp)

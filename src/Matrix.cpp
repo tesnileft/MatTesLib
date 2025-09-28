@@ -1,4 +1,4 @@
-#include "Matrix.h"
+#include "MatTesLib/Matrix.h"
 
 #include <sstream>
 #include <stdexcept>
@@ -6,7 +6,7 @@
 namespace Matrix
 {
     template <size_t C, size_t R, typename T, precision Q, typename Op>
-    constexpr matrix<C, R, T, Q> elementWiseOperation(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1, Op op)
+    constexpr matrix<C, R, T, Q> ElementWiseOperation(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1, Op op)
     {
         matrix<C, R, T, Q> result{};
         for (int column = 0; column < C; column++)
@@ -27,19 +27,17 @@ namespace Matrix
     template <size_t C, size_t R, typename T, precision Q>
     matrix<C, R, T, Q> operator+(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1)
     {
-        matrix<C, R, T, Q> result = elementWiseOperation(m0, m1, [](T a, T b) constexpr { return a + b; });
-        return result;
-
+        return  ElementWiseOperation(m0, m1, [](T a, T b) constexpr { return a + b; });;
     }
 
     template <size_t C, size_t R, typename T, precision Q>
     matrix<C, R, T, Q> operator-(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1)
     {
-        return elementWiseOperation(m0, m1, [](T a, T b) constexpr { return a - b; });
+        return ElementWiseOperation(m0, m1, [](T a, T b) constexpr { return a - b; });
     }
 
-    template<size_t C1, size_t R1, typename T, size_t C2, size_t R2, typename = std::enable_if_t<C1 == R2>>
-    constexpr matrix<C2, R1, T> operator *(matrix<C1, R1, T> a, matrix<C2, R2, T> b)
+    template<size_t CR, size_t R1, typename T, precision Q1, size_t C2, precision Q2>
+    constexpr matrix<CR, R1, T> operator *(matrix<CR, R1, T, Q1> a, matrix<C2, CR, T, Q2> b)
     {
         matrix<C2, R1, T> result{};
 
@@ -48,12 +46,42 @@ namespace Matrix
             for (size_t row = 0; row < R1; ++row)
             {
                 T sum{};
-                for (size_t k = 0; k < C1; ++k)
+                for (size_t k = 0; k < CR; ++k)
                 {
                     sum += a.data[k][row] * b.data[col][k];
                 }
                 result.data[col][row] = sum;
             }
+        }
+        return result;
+    }
+
+    template <size_t C, size_t R, typename T, precision Q>
+    constexpr matrix<C, R, T, Q> operator*(T scalar, matrix<C, R, T, Q>& m)
+    {
+        matrix<C, R, T, Q> result{};
+        for (size_t col = 0; col < C; ++col)
+        {
+            for (size_t row = 0; row < R; ++row)
+            {
+                result[col][row] = scalar * m.data[col][row];
+            }
+        }
+        return result;
+    }
+
+    template <size_t C, size_t R, typename T, precision Q>
+    constexpr Vector<T, R> operator*(Vector<T, R> v, const matrix<C, R, T, Q>& m)
+    {
+        Vector<T, R> result{};
+        for (size_t col = 0; col < C; ++col)
+        {
+            T accum{};
+            for (size_t row = 0; row < R; ++row)
+            {
+                accum += v[col] * m.data[col][row];
+            }
+            result[col] = accum;
         }
         return result;
     }
@@ -106,8 +134,30 @@ namespace Matrix
     {
         return Scale(s, s, s);
     }
+    mat4 RotationX(const float degrees)
+    {
+        mat4 result = Identity();
+
+        return result;
+
+    }
+    mat4 RotationY(const float degrees)
+    {
+        mat4 result = Identity();
+
+        return result;
+    }
+    mat4 RotationZ(const float degrees)
+    {
+        mat4 result = Identity();
+
+        return result;
+    }
 
     mat4 RotationFromQuaternion(Quaternion q)
     {
+        mat4 result = Identity();
+
+        return result;
     }
 }

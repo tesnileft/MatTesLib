@@ -1,8 +1,8 @@
 #include <assert.h>
 #include <iostream>
 
-#include "Matrix.h"
-#include "Matrix.cpp"
+#include "../include/MatTesLib/Matrix.h"
+#include "../src/Matrix.cpp"
 
 int main()
 {
