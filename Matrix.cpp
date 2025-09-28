@@ -38,8 +38,8 @@ namespace Matrix
         return elementWiseOperation(m0, m1, [](T a, T b) constexpr { return a - b; });
     }
 
-    template<size_t C1, size_t R1, typename T, precision Q1, size_t C2, size_t R2, precision Q2, std::enable_if_t<C1 == R2>>
-    constexpr matrix<C2, R1, T> operator *(const matrix<C1, R1, T, Q1> a, const matrix<C2, R2, T, Q2> b)
+    template<size_t C1, size_t R1, typename T, size_t C2, size_t R2, typename = std::enable_if_t<C1 == R2>>
+    constexpr matrix<C2, R1, T> operator *(matrix<C1, R1, T> a, matrix<C2, R2, T> b)
     {
         matrix<C2, R1, T> result{};
 
