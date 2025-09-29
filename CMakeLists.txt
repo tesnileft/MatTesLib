@@ -4,15 +4,16 @@ set(CMAKE_CXX_STANDARD 20)
 enable_testing()
 
 add_library(MatTesLib STATIC
+        include/MatTesLib/Matrix.h
         src/Matrix.cpp
+        include/MatTesLib/Quaternion.h
         src/Quaternion.cpp
         include/MatTesLib/Vector.h
-        src/Vector.cpp
-)
+        src/Vector.cpp)
 
 target_include_directories(MatTesLib
         PUBLIC
-        $<BUILD_INTERFACE: ${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
 
