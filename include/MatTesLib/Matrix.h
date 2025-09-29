@@ -31,25 +31,26 @@ namespace Matrix
     template <size_t C, size_t R, typename T, precision Q, typename Op>
     constexpr matrix<C, R, T, Q> ElementWiseOperation(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1, Op op);
 
-    template<size_t C, size_t R, typename T, precision Q = defaultp>
-    matrix<C, R, T, Q> operator+(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1);
-    template<size_t C, size_t R, typename T, precision Q = defaultp>
-    matrix<C, R, T, Q> operator-(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1);
-
-    template<size_t CR, size_t R1, typename T, precision Q1, size_t C2, precision Q2>
-    constexpr matrix<CR, R1, T> operator * (matrix<CR, R1, T, Q1> a, matrix<C2, CR, T, Q2> b);
-
-    template<size_t C, size_t R, typename T,  precision Q>
-    constexpr matrix<C, R, T, Q> operator* (T scalar, matrix<C, R, T, Q>& m);
-
-    template<size_t C, size_t R, typename T,  precision Q>
-    constexpr Vector<T, R> operator * (Vector<T, R>, const matrix<C, R, T, Q>& m);
-
-    template<size_t C, size_t R, typename T,  precision Q>
-    constexpr matrix<C, R, T, Q> Transpose(const matrix<C, R, T, Q>& m);
-
-    template<size_t C, size_t R, typename T,  precision Q>
-    constexpr matrix<C, R, T, Q> Inverse(const matrix<C, R, T, Q>& m);
+    // -- Moved to inline file--
+    // template<size_t C, size_t R, typename T, precision Q = defaultp>
+    // matrix<C, R, T, Q> operator+(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1);
+    // template<size_t C, size_t R, typename T, precision Q = defaultp>
+    // matrix<C, R, T, Q> operator-(const matrix<C, R, T, Q>& m0, const matrix<C, R, T, Q>& m1);
+    //
+    // template<size_t CR, size_t R1, typename T, precision Q1, size_t C2, precision Q2>
+    // constexpr matrix<CR, R1, T> operator * (matrix<CR, R1, T, Q1> a, matrix<C2, CR, T, Q2> b);
+    //
+    // template<size_t C, size_t R, typename T,  precision Q>
+    // constexpr matrix<C, R, T, Q> operator* (T scalar, matrix<C, R, T, Q>& m);
+    //
+    // template<size_t C, size_t R, typename T,  precision Q>
+    // constexpr Vector<T, R> operator * (Vector<T, R>, const matrix<C, R, T, Q>& m);
+    //
+    // template<size_t C, size_t R, typename T,  precision Q>
+    // constexpr matrix<C, R, T, Q> Transpose(const matrix<C, R, T, Q>& m);
+    //
+    // template<size_t C, size_t R, typename T,  precision Q>
+    // constexpr matrix<C, R, T, Q> Inverse(const matrix<C, R, T, Q>& m);
 
 
     //Basic sized matrices that are likely to be used
@@ -75,10 +76,10 @@ namespace Matrix
     static mat4 Translation(float x, float y, float z);
 
     /// Creates a Scaling matrix with scaling along separate axis.
-    /// @param x
-    /// @param y
-    /// @param z
-    /// @return
+    /// @param x X
+    /// @param y Y
+    /// @param z Z
+    /// @return 4x4 matrix
     static mat4 Scale(float x = 1, float y = 1, float z = 1);
 
     /// Creates a scaling matrix with the same scaling along each axis.
@@ -89,8 +90,5 @@ namespace Matrix
     static mat4 RotationFromQuaternion(Quaternion q);
 
 }
-
-
-
-
+#include "Matrix.inl"
 #endif //MATRIX_H
