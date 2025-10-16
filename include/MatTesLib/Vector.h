@@ -1,5 +1,6 @@
 #ifndef VECTOR_H
 #define VECTOR_H
+
 template<typename T, size_t N>
 struct Vector
 {
@@ -8,17 +9,7 @@ struct Vector
 
 template<typename T, size_t N, typename Op>
 Vector<T, N>  ElementWiseOperation(Vector<T,N> v0, Vector<T,N> v1, Op op);
-//Operators
 
-template<typename T, size_t N>
-Vector<T, N> operator +(Vector<T,N> v0, Vector<T,N> v1);
-template<typename T, size_t N>
-Vector<T, N> operator -(Vector<T,N> v0, Vector<T,N> v1);
-template<typename T, size_t N>
-Vector<T, N> operator *(Vector<T,N> v0, Vector<T,N> v1);
-//Scalar multiplication
-template<typename T, size_t N>
-Vector<T, N> operator *(T scalar, Vector<T,N> v);
 
 typedef Vector<float, 3> Vector3;
 typedef Vector<float, 4> Vector4;
@@ -43,5 +34,5 @@ T Dot(Vector<T, N> v0, Vector<T, N> v1);
 template <typename T>
 Vector<T, 3> Cross(Vector<T, 3> v0, Vector<T, 3> v1);
 
-
+#include "Vector.inl"
 #endif //VECTOR_H
